@@ -1299,6 +1299,11 @@
                 journeyTimelineBack.style.transform = 'none';
 
                 return;
+            } else {
+                // Remove inline overrides on desktop resize so CSS can take over again
+                journeyTimeline.style.height = '';
+                journeyTimeline.style.position = '';
+                journeyTimelineBack.style.display = '';
             }
 
 
@@ -1352,6 +1357,7 @@
         }
 
         window.addEventListener('scroll', updateJourneyTimeline);
+        window.addEventListener('resize', updateJourneyTimeline);
         requestAnimationFrame(() => {
             updateJourneyTimeline();
         });
@@ -1495,8 +1501,8 @@
             zoomControl: true
         });
 
-        L.tileLayer('https://watercolormaps.collection.cooperhewitt.org/tile/watercolor/{z}/{x}/{y}.jpg', {
-            attribution: '© Stamen Design, © OpenStreetMap contributors',
+        L.tileLayer('https://tiles.stadiamaps.com/tiles/stamen_watercolor/{z}/{x}/{y}.jpg', {
+            attribution: '© Stadia Maps, © Stamen Design, © OpenMapTiles, © OpenStreetMap contributors',
             maxZoom: 16
         }).addTo(map);
 
