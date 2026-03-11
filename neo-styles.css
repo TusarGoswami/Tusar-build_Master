@@ -3531,3 +3531,123 @@ body[data-theme="dark"] .nav-lazyfire {
     padding-bottom: 0.5rem;
   }
 }
+
+/* Commits City - Isometric 3D GitHub Graph */
+.city-container {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 4rem 2rem 6rem;
+  background: var(--bg);
+  border: 4px solid var(--border);
+  box-shadow: 8px 8px 0 var(--border);
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+body[data-theme="dark"] .city-container {
+  background: #0a0a0a;
+}
+
+.city-container::-webkit-scrollbar {
+  height: 12px;
+}
+.city-container::-webkit-scrollbar-thumb {
+  background: var(--cyan);
+}
+
+.city-isometric {
+  display: grid;
+  grid-template-rows: repeat(7, 14px);
+  grid-auto-flow: column;
+  grid-auto-columns: 14px;
+  gap: 8px;
+  transform: rotateX(60deg) rotateY(0deg) rotateZ(-45deg);
+  transform-style: preserve-3d;
+  margin-left: 20px;
+}
+
+.city-block {
+  width: 14px;
+  height: 14px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.city-block > div {
+  position: absolute;
+  background: inherit;
+  border: 1px solid rgba(0,0,0,0.8);
+}
+
+body[data-theme="dark"] .city-block > div {
+  border: 1px solid rgba(255,255,255,0.4);
+}
+
+/* Base square */
+.city-block::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgba(0,0,0,0.5);
+}
+
+/* Top Face */
+.city-block .top {
+  width: 14px;
+  height: 14px;
+  transform: translateZ(var(--h));
+  transition: transform 0.4s ease;
+  z-index: 3;
+}
+
+/* Left Face */
+.city-block .left {
+  width: var(--h);
+  height: 14px;
+  top: 0;
+  left: 0;
+  transform-origin: left;
+  transform: rotateY(-90deg);
+  filter: brightness(0.7);
+  transition: width 0.4s ease;
+  z-index: 2;
+}
+
+/* Bottom/Front Face */
+.city-block .bottom {
+  top: 14px;
+  left: 0;
+  width: 14px;
+  height: var(--h);
+  transform-origin: top;
+  transform: rotateX(-90deg);
+  filter: brightness(0.5);
+  transition: height 0.4s ease;
+  z-index: 2;
+}
+
+.city-block:hover {
+  transform: translateZ(15px);
+  cursor: pointer;
+  z-index: 10;
+}
+
+/* Contribution colors */
+.contrib-0 { background: #ebedf0; --h: 4px; }
+.contrib-1 { background: #9be9a8; --h: 12px; }
+.contrib-2 { background: #40c463; --h: 24px; }
+.contrib-3 { background: #30a14e; --h: 36px; }
+.contrib-4 { background: #216e39; --h: 52px; }
+
+body[data-theme="dark"] .contrib-0 { background: #161b22; }
+body[data-theme="dark"] .contrib-1 { background: #0e4429; }
+body[data-theme="dark"] .contrib-2 { background: #006d32; }
+body[data-theme="dark"] .contrib-3 { background: #26a641; }
+body[data-theme="dark"] .contrib-4 { background: #39d353; }
+
