@@ -1511,9 +1511,9 @@
             zoomControl: true
         });
 
-        L.tileLayer('https://tiles.stadiamaps.com/tiles/stamen_watercolor/{z}/{x}/{y}.jpg', {
-            attribution: '© Stadia Maps, © Stamen Design, © OpenMapTiles, © OpenStreetMap contributors',
-            maxZoom: 16
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors',
+            maxZoom: 19
         }).addTo(map);
 
         // Add custom home button control
