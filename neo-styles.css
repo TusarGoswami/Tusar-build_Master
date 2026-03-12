@@ -3651,3 +3651,133 @@ body[data-theme="dark"] .contrib-2 { background: #006d32; }
 body[data-theme="dark"] .contrib-3 { background: #26a641; }
 body[data-theme="dark"] .contrib-4 { background: #39d353; }
 
+/* --- NEW ENHANCEMENTS --- */
+
+/* Grain Overlay */
+.grain-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 999999;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Custom Cursor */
+.custom-cursor {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  background: var(--pink);
+  border: 2px solid #000;
+  pointer-events: none;
+  z-index: 9999999;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s, height 0.2s, background 0.2s, transform 0.1s ease-out;
+  display: block;
+}
+
+.custom-cursor::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: -1;
+  transition: all 0.2s;
+}
+
+.cursor-hover {
+  width: 40px;
+  height: 40px;
+  background: var(--yellow);
+  mix-blend-mode: normal;
+  border-radius: 4px;
+}
+
+@media (max-width: 768px) {
+  .custom-cursor {
+    display: none;
+  }
+}
+
+/* Back to Top Button */
+.back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 60px;
+  height: 60px;
+  background: var(--cyan);
+  border: 3px solid #000;
+  box-shadow: 4px 4px 0 #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.back-to-top:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 8px 8px 0 #000;
+  background: var(--yellow);
+}
+
+.back-to-top:active {
+  transform: translate(0, 0);
+  box-shadow: 0 0 0 #000;
+}
+
+/* Email Toast */
+.email-toast {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: var(--accent);
+  border: 3px solid #000;
+  box-shadow: 6px 6px 0 #000;
+  padding: 1rem 2rem;
+  font-weight: 700;
+  z-index: 10000;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.email-toast.visible {
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Glitch Effect for Brand */
+.nav-brand:hover {
+  animation: glitch-brand 0.3s infinite;
+}
+
+@keyframes glitch-brand {
+  0% { transform: translate(3px, 3px) skew(0deg); }
+  25% { transform: translate(5px, 1px) skew(5deg); box-shadow: -3px -3px 0 var(--pink); }
+  50% { transform: translate(1px, 4px) skew(-5deg); box-shadow: 3px 3px 0 var(--cyan); }
+  75% { transform: translate(4px, 2px) skew(2deg); }
+  100% { transform: translate(3px, 3px) skew(0deg); }
+}
+
+/* Enhanced Highlight animation speed */
+.highlight {
+  transition: background-size 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+

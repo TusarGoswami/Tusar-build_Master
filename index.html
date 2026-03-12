@@ -110,6 +110,12 @@
 </head>
 
 <body>
+    <!-- Grain Texture Overlay -->
+    <div class="grain-overlay"></div>
+
+    <!-- Custom Cursor -->
+    <div class="custom-cursor"></div>
+
     <!-- Loading Screen -->
     <div class="loader-overlay">
         <div class="loader-shapes">
@@ -228,7 +234,7 @@
                             <div class="coffee-arrow"> <span class="coffee-arrow-text">Download my Resume</span> <img
                                     src="image/arrow.png" alt="arrow" class="coffee-arrow-img" width="140" height="140">
                             </div> <a
-                                href="https://drive.google.com/file/d/17DLCw12BQD3svNZd6tO7ntARO0-vSx8y/view?usp=drive_link"
+                                href="https://drive.google.com/file/d/14e2QiKQvjAZ7CWvnZ73SrF3l2_mfhTZC/view?usp=drive_link"
                                 target="_blank" class="btn-coffee"> <img src="image/resume.svg" alt="Coffee"
                                     class="coffee-icon-img rounded-full" width="52" height="52"> </a>
                         </div> <a href="#contact" class="btn-cta">Get in Touch!</a>
@@ -981,7 +987,7 @@
                     </div>
                 </div>
                 <div class="footer-bottom-compact">
-                    <span>© 2026 Tusar Goswami</span>
+                    <span>© <span id="current-year">2026</span> Tusar Goswami</span>
                     <a href="https://github.com/TusarGoswami" target="_blank" class="footer-terminal-link-compact">
                         <i class="fab fa-github"></i> GitHub
                     </a>
@@ -989,7 +995,11 @@
             </div>
         </footer>
     </div>
-    </div>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
     <script>
         // Always start at top of page on reload
@@ -1671,6 +1681,112 @@
         window.addEventListener('scroll', updateProgressBar);
         window.addEventListener('resize', updateProgressBar);
         updateProgressBar();
+
+        // --- NEW ENHANCEMENTS ---
+
+        // Dynamic Copyright Year
+        const yearEl = document.getElementById('current-year');
+        if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+        // Custom Cursor Logic
+        const cursor = document.querySelector('.custom-cursor');
+        if (cursor) {
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+            });
+
+            document.addEventListener('mousedown', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(0.8) rotate(45deg)';
+            });
+
+            document.addEventListener('mouseup', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1) rotate(0deg)';
+            });
+
+            const updateInteractiveTargets = () => {
+                const interactiveElements = document.querySelectorAll('a, button, .social-btn, .nav-link, .nav-cta, .theme-toggle-nav, .tech-badge, .card, .skill-box, .creator-project, .timeline-item-flat');
+                interactiveElements.forEach(el => {
+                    if (!el.dataset.cursorBound) {
+                        el.addEventListener('mouseenter', () => cursor.classList.add('cursor-hover'));
+                        el.addEventListener('mouseleave', () => cursor.classList.remove('cursor-hover'));
+                        el.dataset.cursorBound = 'true';
+                    }
+                });
+            };
+            updateInteractiveTargets();
+            setInterval(updateInteractiveTargets, 2000);
+        }
+
+        // Back to Top Logic
+        const backToTopBtn = document.getElementById('back-to-top');
+        if (backToTopBtn) {
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 500) {
+                    backToTopBtn.classList.add('visible');
+                } else {
+                    backToTopBtn.classList.remove('visible');
+                }
+            });
+
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+
+        // Copy Email function
+        window.copyEmail = function (e) {
+            if (e) e.preventDefault();
+            const email = 'tusargoswami0027@gmail.com';
+            navigator.clipboard.writeText(email).then(() => {
+                const toast = document.createElement('div');
+                toast.className = 'email-toast';
+                toast.textContent = 'Email copied to clipboard! 🚀';
+                document.body.appendChild(toast);
+                setTimeout(() => toast.classList.add('visible'), 100);
+                setTimeout(() => {
+                    toast.classList.remove('visible');
+                    setTimeout(() => toast.remove(), 300);
+                }, 3000);
+            });
+        };
+
+        document.querySelectorAll('.contact-card[href*="mailto"], .contact-card[href*="gmail.com"]').forEach(link => {
+            link.addEventListener('click', window.copyEmail);
+        });
+
+        // Neo-Brutalist Confetti
+        function createConfetti() {
+            const colors = ['#66d9ef', '#ffd93d', '#ff6b9d', '#a8e6cf', '#000'];
+            for (let i = 0; i < 20; i++) {
+                const confetti = document.createElement('div');
+                confetti.style.position = 'fixed';
+                confetti.style.width = Math.random() * 15 + 5 + 'px';
+                confetti.style.height = Math.random() * 15 + 5 + 'px';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.border = '2px solid #000';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.top = '-20px';
+                confetti.style.zIndex = '999999';
+                confetti.style.pointerEvents = 'none';
+                document.body.appendChild(confetti);
+
+                const animation = confetti.animate([
+                    { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
+                    { transform: `translateY(100vh) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+                ], {
+                    duration: Math.random() * 2000 + 1000,
+                    easing: 'cubic-bezier(0, .9, .57, 1)'
+                });
+
+                animation.onfinish = () => confetti.remove();
+            }
+        }
+
+        document.querySelectorAll('.nav-cta, .btn-cta').forEach(btn => {
+            btn.addEventListener('mouseenter', createConfetti);
+        });
+
 
     </script>
 </body>
