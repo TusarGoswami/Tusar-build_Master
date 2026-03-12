@@ -1787,6 +1787,18 @@
             btn.addEventListener('mouseenter', createConfetti);
         });
 
+        // Tab Attention (Dynamic Title)
+        const originalTitle = document.title;
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                const messages = ['Hey, come back! 👋', 'Check out my projects! 🚀', 'Miss me? 😢', 'Code never sleeps! 💻'];
+                document.title = messages[Math.floor(Math.random() * messages.length)];
+            } else {
+                document.title = originalTitle;
+            }
+        });
+
+
 
     </script>
 </body>
