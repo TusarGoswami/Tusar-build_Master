@@ -183,6 +183,10 @@
                     <div class="checkpoint-dot"></div>
                     <span class="checkpoint-label">Certificates</span>
                 </div>
+                <div class="checkpoint" data-section="projects">
+                    <div class="checkpoint-dot"></div>
+                    <span class="checkpoint-label">Projects</span>
+                </div>
                 <div class="checkpoint" data-section="contact">
                     <div class="checkpoint-dot"></div>
                     <span class="checkpoint-label">Contact</span>
@@ -198,6 +202,7 @@
                     <a href="#experience" class="nav-link">Journey</a>
                     <a href="#skills" class="nav-link">Skills</a>
                     <a href="#certificates" class="nav-link">Certificates</a>
+                    <a href="#projects" class="nav-link">Projects</a>
                     <a href="#contact" class="nav-cta">Get in Touch!</a>
                     <button id="theme-toggle" class="theme-toggle-nav" aria-label="Toggle theme">
                         <i class="fas fa-moon"></i>
@@ -701,7 +706,7 @@
             </section>
 
             <section class="section section-compact" id="projects">
-                <h2 class="section-title text-3xl md:text-4xl text-center mb-10"> PROJECTS</h2>
+                <h2 class="section-title"> PROJECTS</h2>
 
                 <!-- 1. Head-2-Code -->
                 <div class="creator-showcase mb-12" data-tech-stack="react nodejs expressjs mongodb tailwind">
@@ -1082,6 +1087,7 @@
                             <a href="#experience">Experience</a>
                             <a href="#skills">Skills</a>
                             <a href="#certificates">Certificates</a>
+                            <a href="#projects">Projects</a>
                         </div>
                         <div class="footer-social-compact">
                             <a href="https://github.com/TusarGoswami" target="_blank" title="GitHub">
@@ -1755,7 +1761,7 @@
                 progressBarFill.style.width = progress + '%';
 
                 // Update active checkpoint based on scroll position
-                const sections = ['hero', 'about', 'experience', 'skills', 'certificates', 'contact'];
+                const sections = ['hero', 'about', 'experience', 'skills', 'certificates', 'projects', 'contact'];
                 let activeIndex = 0;
 
                 sections.forEach((sectionId, index) => {
