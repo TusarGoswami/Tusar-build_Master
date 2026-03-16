@@ -157,6 +157,28 @@ html {
   }
 }
 
+/* Click Pop Animation */
+.click-pop-shape {
+  position: fixed;
+  pointer-events: none;
+  z-index: 100000;
+  width: 15px;
+  height: 15px;
+  border: 2px solid #000;
+  animation: click-pop-anim 0.6s cubic-bezier(0, .9, .57, 1) forwards;
+}
+
+@keyframes click-pop-anim {
+  0% {
+    transform: translate(-50%, -50%) scale(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--tx), var(--ty)) scale(1.5) rotate(var(--rot));
+    opacity: 0;
+  }
+}
+
 @media (max-width: 768px) {
   .loader-letter {
     font-size: 4rem;
@@ -1401,6 +1423,39 @@ body[data-theme="dark"] .stat-number {
   color: var(--secondary);
 }
 
+/* Quick Stats Nutshell */
+.nutshell-container {
+  display: flex;
+  gap: 1rem;
+  margin: 1.5rem 0;
+  flex-wrap: wrap;
+}
+
+.nutshell-stat {
+  background: var(--white);
+  border: 3px solid var(--border);
+  box-shadow: 4px 4px 0 var(--border);
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.nutshell-stat:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--border);
+}
+
+.nutshell-stat i {
+  color: var(--cyan);
+}
+
+.nutshell-stat:nth-child(2) i { color: var(--pink); }
+.nutshell-stat:nth-child(3) i { color: var(--yellow); }
+
 @media (max-width: 1024px) {
   .hero-content {
     grid-template-columns: 1fr;
@@ -2255,6 +2310,48 @@ body[data-theme="dark"] .neo-marker-label {
   background: var(--secondary);
 }
 
+/* GitHub Activity Section */
+.github-activity-container {
+  margin: 4rem 0;
+  text-align: center;
+}
+
+.github-chart-card {
+  background: var(--white);
+  border: 4px solid var(--border);
+  box-shadow: 12px 12px 0 var(--border);
+  padding: 2rem;
+  display: inline-block;
+  max-width: 100%;
+  overflow-x: auto;
+  transition: all 0.3s ease;
+}
+
+.github-chart-card:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 16px 16px 0 var(--border);
+}
+
+.github-chart-card img {
+  max-width: 1000px;
+  width: 100%;
+  height: auto;
+  filter: grayscale(0.2) contrast(1.1);
+}
+
+body[data-theme="dark"] .github-chart-card img {
+  filter: invert(0.9) hue-rotate(180deg) brightness(1.2);
+}
+
+.section-subtitle {
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  display: block;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
 /* Leaflet controls styling */
 .leaflet-control-zoom {
   border: none !important;
@@ -3775,10 +3872,75 @@ body[data-theme="dark"] .contrib-4 { background: #39d353; }
   100% { transform: translate(3px, 3px) skew(0deg); }
 }
 
+/* Enhanced Project Hover Effects */
+.creator-showcase {
+  background: var(--white);
+  border: 4px solid var(--border);
+  box-shadow: 12px 12px 0 var(--border);
+  padding: 2.5rem;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+}
+
+.creator-showcase:hover {
+  transform: translate(-8px, -8px);
+  box-shadow: 20px 20px 0 var(--border);
+  background: var(--bg);
+}
+
+.creator-showcase::after {
+  content: 'VIEW PROJECT';
+  position: absolute;
+  top: 10px;
+  right: -100px;
+  background: var(--yellow);
+  border: 2px solid var(--border);
+  padding: 0.2rem 1rem;
+  font-weight: 700;
+  font-size: 0.8rem;
+  transition: all 0.3s ease;
+  transform: rotate(15deg);
+}
+
+.creator-showcase:hover::after {
+  right: 10px;
+}
+
+.creator-tech {
+  transition: all 0.3s ease;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.creator-showcase:hover .creator-tech {
+  background: var(--white);
+  border: 2px dashed var(--border);
+  transform: scale(1.02);
+}
+
+.creator-tech i {
+  transition: all 0.3s ease;
+}
+
+.creator-showcase:hover .creator-tech i {
+  transform: translateY(-3px) scale(1.2);
+  color: var(--cyan);
+}
+
+.creator-showcase:hover .creator-tech i:nth-child(even) {
+  color: var(--pink);
+}
+
+.creator-tagline {
+  transition: opacity 0.3s ease;
+}
+
+.creator-showcase:hover .creator-tagline {
+  opacity: 0.9;
+}
+
 /* Enhanced Highlight animation speed */
 .highlight {
   transition: background-size 0.5s cubic-bezier(0.19, 1, 0.22, 1);
 }
-
-
-
