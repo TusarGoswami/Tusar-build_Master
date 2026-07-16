@@ -1486,6 +1486,10 @@ body[data-theme="dark"] .stat-number {
   .skill-box:nth-child(8) {
     grid-column: span 1;
   }
+
+  .skill-box:nth-child(9) {
+    grid-column: 1 / -1;
+  }
 }
 
 @media (max-width: 768px) {
